@@ -8,4 +8,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
-  m_configObjects: {}
+  - enabled: 1
+    path: Assets/Scenes/Adrian Testing.unity
+    guid: ddd060c99b3cabd48987201b26a67768
+  m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: 69e7c967966aa894a815400d986230c3,
+      type: 2}
