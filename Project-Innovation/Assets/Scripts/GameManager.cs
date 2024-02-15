@@ -4,7 +4,7 @@ public class GameManager : MonoBehaviour
 {
     [HideInInspector] public GameObject[] players;
 
-    private void Start()
+    private void Awake()
     {
         players = GameObject.FindGameObjectsWithTag("Player");
         Debug.Log(players.Length);
