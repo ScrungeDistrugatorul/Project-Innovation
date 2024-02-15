@@ -9,9 +9,11 @@ public class TriggerTeleport : MonoBehaviour
     private GameManager _gameManager;
     private int _playerCount;
     public int sceneToSwitch;
-    public float timeCountdown = 5f;
+    private float _timeCountdown;
+    public float originalTime = 5f;
     private void Awake()
     {
+        _timeCountdown = originalTime;
         _gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         if (_gameManager != null)
         {
@@ -21,7 +23,15 @@ public class TriggerTeleport : MonoBehaviour
 
     private void Update()
     {
-        
+        if (_playerCount == _gameManager.players.Length)
+        {
+            _timeCountdown -= Time.deltaTime;
+            if (_timeCountdown <= 0)
+            {
+                SceneSwitch();
+            }
+            Debug.Log(_timeCountdown);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -29,10 +39,6 @@ public class TriggerTeleport : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             _playerCount++;
-            if (_playerCount == _gameManager.players.Length)
-            {
-                Timer();
-            }
             Debug.Log(_playerCount);
         }
     }
@@ -43,16 +49,12 @@ public class TriggerTeleport : MonoBehaviour
         {
             _playerCount--;
             Debug.Log(_playerCount);
+            _timeCountdown = originalTime;
         }
     }
 
     void SceneSwitch()
     {
         SceneManager.LoadScene(sceneToSwitch);
-    }
-
-    void Timer()
-    {
-        
     }
 }
