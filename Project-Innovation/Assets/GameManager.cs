@@ -9,4 +9,12 @@ public class GameManager : MonoBehaviour
         players = GameObject.FindGameObjectsWithTag("Player");
         Debug.Log(players.Length);
     }
+    
+    public string ShowTimer(float time)
+    {
+    	int intTime = (int) time;
+    	int seconds = intTime % 60;
+    	string timeText = $"{seconds+1}";
+    	return timeText;
+    }
 }

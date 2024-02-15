@@ -274,7 +274,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneToSwitch: 1
-  timeCountdown: 5
+  originalTime: 5
 --- !u!65 &374555934
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -731,7 +731,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneToSwitch: 0
-  timeCountdown: 5
+  originalTime: 5
 --- !u!1001 &1148604300
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -758,7 +758,7 @@ PrefabInstance:
     - target: {fileID: 5498893361873816551, guid: 4bc66d6b989e0584a936535fb3053a08,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1
+      value: -0.47
       objectReference: {fileID: 0}
     - target: {fileID: 5498893361873816551, guid: 4bc66d6b989e0584a936535fb3053a08,
         type: 3}
@@ -1310,8 +1310,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
