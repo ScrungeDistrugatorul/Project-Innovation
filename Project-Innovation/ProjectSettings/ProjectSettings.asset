@@ -163,7 +163,7 @@ PlayerSettings:
   applicationIdentifier:
     Android: com.UnityTechnologies.com.unity.template.urpblank
     Standalone: com.Unity-Technologies.com.unity.template.urp-blank
-    iPhone: com.Unity-Technologies.com.unity.template.urp-blank
+    iPhone: com.DefaultCompany.Project-Innovation
   buildNumber:
     Standalone: 0
     VisionOS: 0
@@ -913,11 +913,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 2
   windowsGamepadBackendHint: 0
-  cloudProjectId: ecf0b00b-2c1d-4553-b712-56ce1ec64cda
+  cloudProjectId: 402e7b19-8f5c-46fa-8175-75161b607ebd
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
   projectName: Project-Innovation
-  organizationId: andigebg
+  organizationId: iklekomcev200413
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}
