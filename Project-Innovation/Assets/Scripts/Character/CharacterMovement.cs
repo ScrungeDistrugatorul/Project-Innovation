@@ -45,6 +45,6 @@ public class CharacterMovement : MonoBehaviour
         public void OnMove(InputAction.CallbackContext context)
         {
             Vector2 movement = context.ReadValue<Vector2>();
-            move = new Vector3(movement.x, 0, movement.y);
+            move = new Vector3(-movement.x, 0, -movement.y);
         }
 }
