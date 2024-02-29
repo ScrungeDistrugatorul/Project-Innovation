@@ -7,7 +7,7 @@ public class CharacterMovement : MonoBehaviour
     private Vector3 playerVelocity;
     private bool groundedPlayer;
     public float playerSpeed = 2.0f;
-    private float jumpHeight = 1.0f;
+    //private float jumpHeight = 1.0f;
     private float gravityValue = -9.81f;
 
     private Vector3 move;
@@ -31,6 +31,9 @@ public class CharacterMovement : MonoBehaviour
             {
                 gameObject.transform.forward = move;
             }
+            
+            //ACCELEROMETER MOVEMENT
+            //controller.Move(new Vector3(-Input.acceleration.y, 0f, Input.acceleration.x) * Time.deltaTime * playerSpeed);
     
             // // Changes the height position of the player..
             // if (Input.GetButtonDown("Jump") && groundedPlayer)
