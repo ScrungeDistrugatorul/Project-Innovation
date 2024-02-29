@@ -6,6 +6,10 @@ TagManager:
   tags:
   - SpawnPoint
   - GameManager
+  - Red
+  - Blue
+  - Green
+  - Yellow
   layers:
   - Default
   - TransparentFX
