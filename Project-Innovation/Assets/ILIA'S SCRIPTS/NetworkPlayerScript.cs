@@ -19,14 +19,16 @@ public class NetworkPlayerScript : NetworkBehaviour
     [SerializeField] GameObject baloon;
     bool isTrue= false;
 
-    public GameObject slider;
+    GameObject slider;
+
+    public int numberOfPlayers;
 
     private void Awake()
     {
 
         // if (!IsOwner) { return; } //do a check if it controls a specific player
 
-        Debug.LogError(NetworkManager.LocalClientId);
+        numberOfPlayers = LobbyManager.Instance.GetJoinedLobby().Players.Count - 1;
 
         if (SceneManager.GetActiveScene().name == "ILIA'S SCENE")
         {
@@ -67,7 +69,11 @@ public class NetworkPlayerScript : NetworkBehaviour
         if (SceneManager.GetActiveScene().name == "BALOON GAME" && !isTrue)
         {
             rb.velocity = new Vector3(0, 0, 0);
-            transform.position = new Vector3(0, 0, 0);
+
+            float areaForEachPlayer = 32 / numberOfPlayers;
+
+            transform.position = new Vector3(((NetworkManager.LocalClientId-1) * areaForEachPlayer + areaForEachPlayer/2) - 16, -3, 0);
+            rb.velocity = new Vector3(0, 0, 0);
 
             lobbyCharacter.SetActive(false);
             baloon.SetActive(true);
@@ -77,6 +83,18 @@ public class NetworkPlayerScript : NetworkBehaviour
 
             slider = GameObject.Find("Slider");
         }
+    }
+
+    //[ServerRpc(RequireOwnership = false)]
+    //public void SetNumberOfPlayersServerRPC()
+    //{
+    //    numberOfPlayers = NetworkManager.Singleton.ConnectedClients.Count;
+    //}
+
+    [ServerRpc]
+    public void GetClientsServerRpc()
+    {
+        numberOfPlayers = NetworkManager.Singleton.ConnectedClients.Count;
     }
 
     [ServerRpc]
