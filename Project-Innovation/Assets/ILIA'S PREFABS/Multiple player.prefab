@@ -287,7 +287,7 @@ MonoBehaviour:
   moveSpeed: 6
   lobbyCharacter: {fileID: 6864039757549939199}
   baloon: {fileID: 54181937575331458}
-  spawner: {fileID: 7185269540804822590, guid: 96a1e4d070b682248883395b6974b49b, type: 3}
+  spawner: {fileID: 1314781362525483053}
   slider: {fileID: 0}
 --- !u!54 &7464110392324291431
 Rigidbody:
@@ -369,12 +369,12 @@ PrefabInstance:
     - target: {fileID: 3416097469287254543, guid: 96a1e4d070b682248883395b6974b49b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.75
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3416097469287254543, guid: 96a1e4d070b682248883395b6974b49b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3416097469287254543, guid: 96a1e4d070b682248883395b6974b49b,
         type: 3}
@@ -426,11 +426,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spawner
       objectReference: {fileID: 0}
+    - target: {fileID: 7185269540804822590, guid: 96a1e4d070b682248883395b6974b49b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96a1e4d070b682248883395b6974b49b, type: 3}
+--- !u!1 &1314781362525483053 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7185269540804822590, guid: 96a1e4d070b682248883395b6974b49b,
+    type: 3}
+  m_PrefabInstance: {fileID: 8180857145801684499}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6836557376808811548 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3416097469287254543, guid: 96a1e4d070b682248883395b6974b49b,
