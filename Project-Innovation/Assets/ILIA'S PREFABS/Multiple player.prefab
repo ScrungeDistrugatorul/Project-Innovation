@@ -261,7 +261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3193539990
+  GlobalObjectIdHash: 1256056260
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 1
@@ -286,6 +286,8 @@ MonoBehaviour:
   moveSpeed: 6
   lobbyCharacter: {fileID: 6864039757549939199}
   baloon: {fileID: 54181937575331458}
+  spawner: {fileID: 7185269540804822590, guid: 96a1e4d070b682248883395b6974b49b, type: 3}
+  slider: {fileID: 0}
 --- !u!54 &7464110392324291431
 Rigidbody:
   m_ObjectHideFlags: 0
