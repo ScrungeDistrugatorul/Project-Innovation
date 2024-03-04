@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 623262538142197235}
   - component: {fileID: 6237516467996079845}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: balloon fabric
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -245,7 +245,7 @@ GameObject:
   - component: {fileID: 2013845993661287006}
   - component: {fileID: 1322066540669152506}
   - component: {fileID: 7857275380523086818}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: balloon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -328,7 +328,7 @@ GameObject:
   - component: {fileID: 6619155479507192210}
   - component: {fileID: 4794850462806908252}
   - component: {fileID: 2140605435453550568}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: balloon animated
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -403,7 +403,7 @@ GameObject:
   - component: {fileID: 2592528337769919640}
   - component: {fileID: 3661413523824653696}
   - component: {fileID: 1763755667465926092}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Lobby character
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -510,7 +510,7 @@ GameObject:
   - component: {fileID: 7464110392324291431}
   - component: {fileID: 7990927812370347962}
   - component: {fileID: 4289100489224988543}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Multiple player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -571,7 +571,7 @@ MonoBehaviour:
   moveSpeed: 6
   lobbyCharacter: {fileID: 6864039757549939199}
   baloon: {fileID: 5805182225773957928}
-  slider: {fileID: 0}
+  numberOfPlayers: 0
 --- !u!54 &7464110392324291431
 Rigidbody:
   m_ObjectHideFlags: 0
