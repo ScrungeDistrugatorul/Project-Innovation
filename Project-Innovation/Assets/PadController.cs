@@ -9,7 +9,10 @@ public class PadController : NetworkBehaviour
 
     private void Start()
     {
-
+        //if (IsServer)
+        //{
+        //    Debug.LogError(NetworkManager.Singleton.ConnectedClients.Count);
+        //}
     }
 
     void OnTriggerEnter(Collider other)
