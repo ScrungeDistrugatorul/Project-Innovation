@@ -1,11 +1,12 @@
-using System;
+using TMPro;
+using Unity.Netcode;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
-public class Spawner : MonoBehaviour
+public class Spawner : NetworkBehaviour
 {
     public GameObject[] trashPrefab;
+    public TMP_Text score;
     
     [Header("Difficulty setting")]
     [Range(0.1f, 10.0f)] public float spawnRate;
@@ -14,6 +15,9 @@ public class Spawner : MonoBehaviour
     [Range(0f, 3.0f)] public float maxValue;
     private float _nextSpawn;
     private float _difficultyScale;
+
+    [HideInInspector]public int playerScore;
+
 
     // Update is called once per frame
     private void Awake()
