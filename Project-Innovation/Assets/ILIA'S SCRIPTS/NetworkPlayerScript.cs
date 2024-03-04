@@ -70,7 +70,8 @@ public class NetworkPlayerScript : NetworkBehaviour
         {
             rb.velocity = new Vector3(0, 0, 0);
 
-            //SetNumberOfPlayersServerRPC();
+            GetClientsServerRpc();
+
             float areaForEachPlayer = 32 / numberOfPlayers;
 
             transform.position = new Vector3(NetworkManager.LocalClientId-1 * areaForEachPlayer + areaForEachPlayer/2, -7, 0);
@@ -90,6 +91,12 @@ public class NetworkPlayerScript : NetworkBehaviour
     //{
     //    numberOfPlayers = NetworkManager.Singleton.ConnectedClients.Count;
     //}
+
+    [ServerRpc]
+    public void GetClientsServerRpc()
+    {
+        numberOfPlayers = NetworkManager.Singleton.ConnectedClients.Count;
+    }
 
     [ServerRpc]
     public void ChangeServerRpc()
