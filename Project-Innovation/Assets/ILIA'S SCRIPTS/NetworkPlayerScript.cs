@@ -21,6 +21,9 @@ public class NetworkPlayerScript : NetworkBehaviour
 
     GameObject slider;
 
+    [Header("Color switch related")] 
+    [SerializeField] private GameObject spawner;
+
     public int numberOfPlayers;
 
     private void Awake()
@@ -39,13 +42,6 @@ public class NetworkPlayerScript : NetworkBehaviour
             
     }
 
-    //[ClientRpc]
-    //public void GetTheListOfClientsClientRpc()
-    //{
-
-    //}
-
-
     private void FixedUpdate()
     {
         if (!IsOwner) { return; }
@@ -59,7 +55,6 @@ public class NetworkPlayerScript : NetworkBehaviour
         {
             rb.AddForce(transform.up * slider.GetComponent<Slider>().value * 18);
         }
-
     }
 
     private void Update()
@@ -83,6 +78,15 @@ public class NetworkPlayerScript : NetworkBehaviour
 
             slider = GameObject.Find("Slider");
         }
+
+        if (SceneManager.GetActiveScene().name == "Adrian Test2")
+        {
+            transform.position = new Vector3(((NetworkManager.LocalClientId-1) * areaForEachPlayer + areaForEachPlayer/2) - 16, -3, 0);
+
+            lobbyCharacter.SetActive(false);
+            spawner.SetActive(true);
+            ColorSwtichServerRpc();
+        }
     }
 
     //[ServerRpc(RequireOwnership = false)]
@@ -104,4 +108,10 @@ public class NetworkPlayerScript : NetworkBehaviour
         baloon.SetActive(true);
     }
 
+    [ServerRpc]
+    public void ColorSwtichServerRpc()
+    {
+        lobbyCharacter.SetActive(false);
+        spawner.SetActive(true);
+    }
 }

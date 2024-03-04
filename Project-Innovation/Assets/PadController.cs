@@ -7,12 +7,11 @@ public class PadController : NetworkBehaviour
 {
     public int amountOfPlayersOnPlatform = 0;
 
+    public string nameOfScene;
+
     private void Start()
     {
-        //if (IsServer)
-        //{
-        //    Debug.LogError(NetworkManager.Singleton.ConnectedClients.Count);
-        //}
+
     }
 
     void OnTriggerEnter(Collider other)
@@ -23,7 +22,7 @@ public class PadController : NetworkBehaviour
 
             if (IsServer && amountOfPlayersOnPlatform == NetworkManager.Singleton.ConnectedClients.Count)
             {
-                NetworkManager.SceneManager.LoadScene("BALOON GAME", UnityEngine.SceneManagement.LoadSceneMode.Single);
+                NetworkManager.SceneManager.LoadScene(nameOfScene, UnityEngine.SceneManagement.LoadSceneMode.Single);
             }
         }
     }

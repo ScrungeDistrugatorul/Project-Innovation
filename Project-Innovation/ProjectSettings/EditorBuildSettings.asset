@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BALOON GAME.unity
     guid: 259f792768a814e37b86afcc9f180cca
+  - enabled: 1
+    path: Assets/Scenes/Adrian Test2.unity
+    guid: 42182d76388f7e441839ab2aea9ee844
   m_configObjects: {}
