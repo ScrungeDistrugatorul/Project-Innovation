@@ -67,7 +67,11 @@ public class NetworkPlayerScript : NetworkBehaviour
         if (SceneManager.GetActiveScene().name == "BALOON GAME" && !isTrue)
         {
             rb.velocity = new Vector3(0, 0, 0);
-            transform.position = new Vector3(0, 0, 0);
+
+            int numberOfPlayers = NetworkManager.Singleton.ConnectedClients.Count;
+            float areaForEachPlayer = 32 / numberOfPlayers;
+
+            transform.position = new Vector3(NetworkManager.LocalClientId-1 * areaForEachPlayer + areaForEachPlayer/2, -7, 0);
 
             lobbyCharacter.SetActive(false);
             baloon.SetActive(true);
