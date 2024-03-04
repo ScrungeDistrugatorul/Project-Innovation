@@ -1,5 +1,3 @@
-using System;
-using System.Net.Mime;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
