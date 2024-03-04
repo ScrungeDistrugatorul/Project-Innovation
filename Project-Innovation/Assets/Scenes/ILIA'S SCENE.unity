@@ -8001,7 +8001,7 @@ MonoBehaviour:
   NetworkConfig:
     ProtocolVersion: 0
     NetworkTransport: {fileID: 1649333068}
-    PlayerPrefab: {fileID: 8157483034104169147, guid: 57cc89b4961e3474581b081ccb78b390,
+    PlayerPrefab: {fileID: 7903751705025382769, guid: ceaf044a8264a48289bc482899e3e532,
       type: 3}
     Prefabs:
       NetworkPrefabsLists:
@@ -9304,8 +9304,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   amountOfPlayersOnPlatform: 0
-  connectedPlayers: 0
-  touching: 0
 --- !u!54 &1886446161
 Rigidbody:
   m_ObjectHideFlags: 0

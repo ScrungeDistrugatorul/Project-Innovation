@@ -7,6 +7,10 @@ public class PadController : NetworkBehaviour
 {
     public int amountOfPlayersOnPlatform = 0;
 
+    private void Start()
+    {
+
+    }
 
     void OnTriggerEnter(Collider other)
     {
