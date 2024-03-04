@@ -57,5 +57,6 @@ public class ColorCheck : NetworkBehaviour
                     Destroy(other.gameObject);
                     break;
             }
+        Destroy(other.gameObject);
     }
 }

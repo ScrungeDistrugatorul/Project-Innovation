@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8899957792231048721}
   - component: {fileID: 4331085423198144415}
   - component: {fileID: 6323804700766796546}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Baloon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 2592528337769919640}
   - component: {fileID: 3661413523824653696}
   - component: {fileID: 1763755667465926092}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Lobby character
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -225,7 +225,7 @@ GameObject:
   - component: {fileID: 7464110392324291431}
   - component: {fileID: 7990927812370347962}
   - component: {fileID: 4289100489224988543}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Multiple player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -288,7 +288,7 @@ MonoBehaviour:
   lobbyCharacter: {fileID: 6864039757549939199}
   baloon: {fileID: 54181937575331458}
   spawner: {fileID: 1314781362525483053}
-  slider: {fileID: 0}
+  numberOfPlayers: 0
 --- !u!54 &7464110392324291431
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -374,7 +374,7 @@ PrefabInstance:
     - target: {fileID: 3416097469287254543, guid: 96a1e4d070b682248883395b6974b49b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3416097469287254543, guid: 96a1e4d070b682248883395b6974b49b,
         type: 3}
@@ -421,6 +421,11 @@ PrefabInstance:
       propertyPath: GlobalObjectIdHash
       value: 3193539990
       objectReference: {fileID: 0}
+    - target: {fileID: 7138818800503536063, guid: 96a1e4d070b682248883395b6974b49b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7185269540804822590, guid: 96a1e4d070b682248883395b6974b49b,
         type: 3}
       propertyPath: m_Name
@@ -428,8 +433,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7185269540804822590, guid: 96a1e4d070b682248883395b6974b49b,
         type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7185269540804822590, guid: 96a1e4d070b682248883395b6974b49b,
+        type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9089039896901053005, guid: 96a1e4d070b682248883395b6974b49b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

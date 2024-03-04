@@ -20,6 +20,7 @@ public class NetworkPlayerScript : NetworkBehaviour
     bool isTrue= false;
 
     GameObject slider;
+    public GameObject colorSwticher;
 
     [Header("Color switch related")] 
     [SerializeField] private GameObject spawner;
@@ -81,11 +82,14 @@ public class NetworkPlayerScript : NetworkBehaviour
 
         if (SceneManager.GetActiveScene().name == "Adrian Test2")
         {
+            float areaForEachPlayer = 32 / numberOfPlayers;
             transform.position = new Vector3(((NetworkManager.LocalClientId-1) * areaForEachPlayer + areaForEachPlayer/2) - 16, -3, 0);
 
             lobbyCharacter.SetActive(false);
             spawner.SetActive(true);
             ColorSwtichServerRpc();
+            
+            colorSwticher = GameObject.Find("LightColors");
         }
     }
 
