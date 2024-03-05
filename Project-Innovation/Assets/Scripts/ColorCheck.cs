@@ -4,59 +4,72 @@ using UnityEngine;
 
 public class ColorCheck : NetworkBehaviour
 {
-    private Gyroscope _gyros;
-    public Spawner spawner;
+    public int score = 0;
 
-    private int _score;
-    // Start is called before the first frame update
-    void Start()
-    {
-        _gyros = FindObjectOfType<Gyroscope>();
-    }
-    
+    public int colorFromGyro;
+
     private void OnTriggerEnter(Collider other)
     {
-        string _trashColor = other.gameObject.tag;
 
-        switch (_trashColor)
+        //if (!IsOwner) { return; }
+
+        if (other.CompareTag("Red"))
+        {
+            if (colorFromGyro == 0)
             {
-                case "Red":
-                    if (_gyros.colors[0].activeSelf)
-                    {
-                        spawner.playerScore++;
-                        spawner.score.text = spawner.playerScore.ToString();
-                        Debug.Log(spawner.playerScore);
-                    }
-                    Destroy(other.gameObject);
-                    break;
-                case "Yellow":
-                    if (_gyros.colors[1].activeSelf)
-                    {
-                        spawner.playerScore++;
-                        spawner.score.text = spawner.playerScore.ToString();
-                        Debug.Log(spawner.playerScore);
-                    }
-                    Destroy(other.gameObject);
-                    break;
-                case "Blue":
-                    if (_gyros.colors[2].activeSelf)
-                    {
-                        spawner.playerScore++;
-                        spawner.score.text = spawner.playerScore.ToString();
-                        Debug.Log(spawner.playerScore);
-                    }
-                    Destroy(other.gameObject);
-                    break;
-                case "Green":
-                    if (_gyros.colors[3].activeSelf)
-                    {
-                        spawner.playerScore++;
-                        spawner.score.text = spawner.playerScore.ToString();
-                        Debug.Log(spawner.playerScore);
-                    }
-                Destroy(other.gameObject);
-                break;
+                score++;
             }
-        Destroy(other.gameObject);
+
+            Destroy(other.gameObject);
+        }
+
+        if (other.CompareTag("Blue"))
+        {
+            if (colorFromGyro == 1)
+            {
+                score++;
+
+            }
+
+            Destroy(other.gameObject);
+        }
+
+        if (other.CompareTag("Yellow"))
+        {
+            if (colorFromGyro == 2)
+            {
+                score++;
+
+            }
+
+            Destroy(other.gameObject);
+        }
+
+        if (other.CompareTag("Green"))
+        {
+            if (colorFromGyro == 3)
+            {
+                score++;
+
+            }
+
+            Destroy(other.gameObject);
+        }
+
+
+
     }
+
+    //[ServerRpc]
+    //public void RemoveObjectFromServerServerRpc(GameObject objectToDestroy)
+    //{
+    //    Destroy(objectToDestroy);
+    //    NetworkObjectReference(objectToDestroy)
+    //}
+
+    public void SetTheColor(int colorIndex)
+    {
+        colorFromGyro = colorIndex;
+    }
+
 }

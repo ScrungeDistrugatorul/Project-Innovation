@@ -72,14 +72,14 @@ public class Gyroscope : NetworkBehaviour
             whichColor = -1;
         }
 
-        //else 
-        //{
-        //    colors[0].SetActive(false);
-        //    colors[1].SetActive(false);
-        //    colors[2].SetActive(false);
-        //    colors[3].SetActive(false);
+        else
+        {
+            colors[0].SetActive(false);
+            colors[1].SetActive(false);
+            colors[2].SetActive(false);
+            colors[3].SetActive(false);
 
-        //    whichColor = -1;
-        //}
+            whichColor = -1;
+        }
     }
 }

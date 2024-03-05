@@ -28,14 +28,14 @@ public class NetworkPlayerScript : NetworkBehaviour
 
     GameObject clientCanvas;
 
-    Gyroscope gyroscopeScript;
+    public Gyroscope gyroscopeScript;
 
     bool colorSwitchBool = false;
 
     [SerializeField] GameObject[] trashPrefab;
-    [SerializeField] TMP_Text scoreText;
+    public TMP_Text scoreText;
 
-    [SerializeField] int score = 0;
+    public int score = 0;
 
     [Header("Difficulty setting for color switch")]
     [Range(0.1f, 10.0f)] public float spawnRate;
@@ -48,7 +48,7 @@ public class NetworkPlayerScript : NetworkBehaviour
     int previousColor = -1;
     int whichColorToSpawn = -2;
 
-    bool hasScored = false;
+    [SerializeField] ColorCheck colorCheckScript;
 
     private void Awake()
     {
@@ -107,25 +107,30 @@ public class NetworkPlayerScript : NetworkBehaviour
         if (SceneManager.GetActiveScene().name == "COLOR SWITCH" && clientCanvas != null)
         {
 
+            colorCheckScript.SetTheColor(gyroscopeScript.whichColor);
+
+            score = colorCheckScript.score;
+            scoreText.text = score.ToString();
+
             TimedFunction();
-            SetScore();
 
         }
 
         if (SceneManager.GetActiveScene().name == "COLOR SWITCH" && !colorSwitchBool)
         {
             rb.velocity = new Vector3(0, 0, 0);
+            rb.useGravity = false;
 
             float areaForEachPlayer = 32 / numberOfPlayers;
 
-            transform.position = new Vector3(((NetworkManager.LocalClientId - 1) * areaForEachPlayer + areaForEachPlayer / 2) - 16, 7, 0);
-            rb.velocity = new Vector3(0, 0, 0);
+            transform.position = new Vector3(((NetworkManager.LocalClientId - 1) * areaForEachPlayer + areaForEachPlayer / 2) - 16, 6.5f, 0);
+            //rb.velocity = new Vector3(0, 0, 0);
 
             lobbyCharacter.SetActive(false);
             spawner.SetActive(true);
             ChangeColorSwitchServerRpc();
 
-            ballonGameBool = true;
+            colorSwitchBool = true;
 
             clientCanvas = GameObject.Find("Client stuff");
             gyroscopeScript = clientCanvas.GetComponent<Gyroscope>();
@@ -140,8 +145,9 @@ public class NetworkPlayerScript : NetworkBehaviour
             _nextSpawn = Time.time + spawnRate;
 
             whichColorToSpawn = Random.Range(0, trashPrefab.Length);
+
+            Instantiate(trashPrefab[whichColorToSpawn], transform.position, Random.rotation);
             SpawningTrashServerRpc(whichColorToSpawn);
-            hasScored = false;
         }
 
         if (Time.time > _difficultyScale)
@@ -158,22 +164,12 @@ public class NetworkPlayerScript : NetworkBehaviour
         }
     }
 
-    void SetScore()
-    {
-        if (gyroscopeScript.whichColor == whichColorToSpawn && !hasScored)
-        {
-            previousColor = whichColorToSpawn;
-            score++;
-            hasScored = true;
-        }
-
-        scoreText.text = score.ToString();
-    }
+   
 
     [ServerRpc]
     public void SpawningTrashServerRpc(int index)
     {
-        GameObject trash = Instantiate(trashPrefab[index], transform.position, Random.rotation);
+        Instantiate(trashPrefab[index], transform.position, Random.rotation);
     }
 
     [ServerRpc]
