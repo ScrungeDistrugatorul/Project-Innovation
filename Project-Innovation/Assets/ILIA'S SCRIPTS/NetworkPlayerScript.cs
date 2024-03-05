@@ -101,7 +101,7 @@ public class NetworkPlayerScript : NetworkBehaviour
 
         if (SceneManager.GetActiveScene().name == "BALOON GAME" && slider != null)
         {
-            rb.AddForce(transform.up * slider.GetComponent<Slider>().value * 18);
+            rb.AddForce(transform.up * slider.GetComponent<Slider>().value * 30);
         }
 
         if (SceneManager.GetActiveScene().name == "COLOR SWITCH" && clientCanvas != null)

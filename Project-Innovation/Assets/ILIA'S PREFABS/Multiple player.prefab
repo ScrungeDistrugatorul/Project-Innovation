@@ -227,7 +227,7 @@ GameObject:
   - component: {fileID: 2878103361476410647}
   - component: {fileID: 4512710197361961433}
   - component: {fileID: 3452483896283444344}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Balloon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -301,7 +301,7 @@ GameObject:
   - component: {fileID: 7482866392156716763}
   - component: {fileID: 7958434035740465279}
   - component: {fileID: 1234060242945558375}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: balloon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -383,7 +383,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8398264346810372470}
   - component: {fileID: 3079047325201318496}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: balloon fabric
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -763,7 +763,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 937108967
+  GlobalObjectIdHash: 3193539990
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 1
