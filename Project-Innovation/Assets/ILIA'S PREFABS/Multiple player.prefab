@@ -226,6 +226,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2878103361476410647}
   - component: {fileID: 4512710197361961433}
+  - component: {fileID: 3452483896283444344}
   m_Layer: 0
   m_Name: Balloon
   m_TagString: Untagged
@@ -242,7 +243,7 @@ Transform:
   m_GameObject: {fileID: 3223103363723356077}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.62, y: 0.86, z: 1.4924221}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -268,6 +269,27 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 1
+--- !u!65 &3452483896283444344
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3223103363723356077}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 3.81, z: 1}
+  m_Center: {x: 0, y: 1.87, z: 0}
 --- !u!1 &4668004505152881281
 GameObject:
   m_ObjectHideFlags: 0
@@ -741,7 +763,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3193539990
+  GlobalObjectIdHash: 937108967
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 1
@@ -767,18 +789,14 @@ MonoBehaviour:
   moveSpeed: 6
   lobbyCharacter: {fileID: 6864039757549939199}
   baloon: {fileID: 3223103363723356077}
-  spawner: {fileID: 1314781362525483053}
-  trashPrefab:
-  - {fileID: 8904400792196216953, guid: daa9e80754a9253449a2697fc4fa4c34, type: 3}
-  - {fileID: 6774003865481600761, guid: a0f30b32da2494041a7ea39c384be08a, type: 3}
-  - {fileID: 2309898778534751885, guid: 0aa22f89172bd7d4bbcfc933efa3d240, type: 3}
-  - {fileID: 2187453896157894614, guid: 729e6ebab372ca64586254098b03b86f, type: 3}
-  scoreText: {fileID: 6894808194099242393}
+  spawner: {fileID: 0}
+  trashPrefab: []
+  scoreText: {fileID: 0}
   score: 0
-  spawnRate: 2
-  difficultyIncreaseScale: 4
+  spawnRate: 0
+  difficultyIncreaseScale: 0
   minValue: 0
-  maxValue: 0.2
+  maxValue: 0
 --- !u!54 &7464110392324291431
 Rigidbody:
   m_ObjectHideFlags: 0
