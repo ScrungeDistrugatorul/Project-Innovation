@@ -54,8 +54,9 @@ public class ColorCheck : NetworkBehaviour
                         spawner.score.text = spawner.playerScore.ToString();
                         Debug.Log(spawner.playerScore);
                     }
-                    Destroy(other.gameObject);
-                    break;
+                Destroy(other.gameObject);
+                break;
             }
+        Destroy(other.gameObject);
     }
 }

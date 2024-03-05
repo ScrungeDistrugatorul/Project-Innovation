@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Adrian Test2.unity
     guid: 42182d76388f7e441839ab2aea9ee844
+  - enabled: 1
+    path: Assets/Scenes/COLOR SWITCH.unity
+    guid: 52a58fb3870a249128d42724e923d8f0
   m_configObjects: {}

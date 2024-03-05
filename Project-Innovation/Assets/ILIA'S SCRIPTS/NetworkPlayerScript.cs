@@ -4,9 +4,12 @@ using UnityEngine;
 using Unity.Netcode;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class NetworkPlayerScript : NetworkBehaviour
 {
+
+    public int numberOfPlayers;
 
     [SerializeField] private Rigidbody rb;
 
@@ -17,14 +20,35 @@ public class NetworkPlayerScript : NetworkBehaviour
 
     [Header("Baloon game related")]
     [SerializeField] GameObject baloon;
-    bool isTrue= false;
-
+    bool ballonGameBool= false;
     GameObject slider;
 
     [Header("Color switch related")] 
     [SerializeField] private GameObject spawner;
 
-    public int numberOfPlayers;
+    GameObject clientCanvas;
+
+    Gyroscope gyroscopeScript;
+
+    bool colorSwitchBool = false;
+
+    [SerializeField] GameObject[] trashPrefab;
+    [SerializeField] TMP_Text scoreText;
+
+    [SerializeField] int score = 0;
+
+    [Header("Difficulty setting for color switch")]
+    [Range(0.1f, 10.0f)] public float spawnRate;
+    [Range(1.0f, 20.0f)] public float difficultyIncreaseScale;
+    [Range(0f, 3.0f)] public float minValue;
+    [Range(0f, 3.0f)] public float maxValue;
+    private float _nextSpawn;
+    private float _difficultyScale;
+
+    int previousColor = -1;
+    int whichColorToSpawn = -2;
+
+    bool hasScored = false;
 
     private void Awake()
     {
@@ -51,17 +75,13 @@ public class NetworkPlayerScript : NetworkBehaviour
             rb.velocity = new Vector3(fixedJoystick.Horizontal * moveSpeed, rb.velocity.y, fixedJoystick.Vertical * moveSpeed);
         }
 
-        if (SceneManager.GetActiveScene().name == "BALOON GAME" && slider != null)
-        {
-            rb.AddForce(transform.up * slider.GetComponent<Slider>().value * 18);
-        }
     }
 
     private void Update()
     {
         if (!IsOwner) { return; }
 
-        if (SceneManager.GetActiveScene().name == "BALOON GAME" && !isTrue)
+        if (SceneManager.GetActiveScene().name == "BALOON GAME" && !ballonGameBool)
         {
             rb.velocity = new Vector3(0, 0, 0);
 
@@ -72,44 +92,99 @@ public class NetworkPlayerScript : NetworkBehaviour
 
             lobbyCharacter.SetActive(false);
             baloon.SetActive(true);
-            ChangeServerRpc();
+            ChangeBalloonServerRpc();
 
-            isTrue = true;
+            ballonGameBool = true;
 
             slider = GameObject.Find("Slider");
         }
 
-        if (SceneManager.GetActiveScene().name == "Adrian Test2")
+        if (SceneManager.GetActiveScene().name == "BALOON GAME" && slider != null)
         {
-            transform.position = new Vector3(((NetworkManager.LocalClientId-1) * areaForEachPlayer + areaForEachPlayer/2) - 16, -3, 0);
+            rb.AddForce(transform.up * slider.GetComponent<Slider>().value * 18);
+        }
+
+        if (SceneManager.GetActiveScene().name == "COLOR SWITCH" && clientCanvas != null)
+        {
+
+            TimedFunction();
+            SetScore();
+
+        }
+
+        if (SceneManager.GetActiveScene().name == "COLOR SWITCH" && !colorSwitchBool)
+        {
+            rb.velocity = new Vector3(0, 0, 0);
+
+            float areaForEachPlayer = 32 / numberOfPlayers;
+
+            transform.position = new Vector3(((NetworkManager.LocalClientId - 1) * areaForEachPlayer + areaForEachPlayer / 2) - 16, 7, 0);
+            rb.velocity = new Vector3(0, 0, 0);
 
             lobbyCharacter.SetActive(false);
             spawner.SetActive(true);
-            ColorSwtichServerRpc();
+            ChangeColorSwitchServerRpc();
+
+            ballonGameBool = true;
+
+            clientCanvas = GameObject.Find("Client stuff");
+            gyroscopeScript = clientCanvas.GetComponent<Gyroscope>();
         }
     }
 
-    //[ServerRpc(RequireOwnership = false)]
-    //public void SetNumberOfPlayersServerRPC()
-    //{
-    //    numberOfPlayers = NetworkManager.Singleton.ConnectedClients.Count;
-    //}
-
-    [ServerRpc]
-    public void GetClientsServerRpc()
+    void TimedFunction()
     {
-        numberOfPlayers = NetworkManager.Singleton.ConnectedClients.Count;
+
+        if (Time.time > _nextSpawn)
+        {
+            _nextSpawn = Time.time + spawnRate;
+
+            whichColorToSpawn = Random.Range(0, trashPrefab.Length);
+            SpawningTrashServerRpc(whichColorToSpawn);
+            hasScored = false;
+        }
+
+        if (Time.time > _difficultyScale)
+        {
+            _difficultyScale = Time.time + difficultyIncreaseScale;
+            if (spawnRate <= 0.2f)
+            {
+                spawnRate = 0.2f;
+            }
+            else
+            {
+                spawnRate -= Random.Range(minValue, maxValue);
+            }
+        }
+    }
+
+    void SetScore()
+    {
+        if (gyroscopeScript.whichColor == whichColorToSpawn && !hasScored)
+        {
+            previousColor = whichColorToSpawn;
+            score++;
+            hasScored = true;
+        }
+
+        scoreText.text = score.ToString();
     }
 
     [ServerRpc]
-    public void ChangeServerRpc()
+    public void SpawningTrashServerRpc(int index)
+    {
+        GameObject trash = Instantiate(trashPrefab[index], transform.position, Random.rotation);
+    }
+
+    [ServerRpc]
+    public void ChangeBalloonServerRpc()
     {
         lobbyCharacter.SetActive(false);
         baloon.SetActive(true);
     }
 
     [ServerRpc]
-    public void ColorSwtichServerRpc()
+    public void ChangeColorSwitchServerRpc()
     {
         lobbyCharacter.SetActive(false);
         spawner.SetActive(true);
