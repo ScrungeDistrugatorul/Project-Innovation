@@ -7,7 +7,7 @@ public class Gyroscope : NetworkBehaviour
 {
     public GameObject[] colors;
     public TMP_Text text;
-
+    
     public int whichColor;
 
     // Start is called before the first frame update
@@ -19,10 +19,10 @@ public class Gyroscope : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        text.text = "x: " + Input.gyro.attitude.x + " y; " + Input.gyro.attitude.y;
+        //text.text = "x: " + Input.gyro.attitude.x + " y; " + Input.gyro.attitude.y;
 
         //red
-        if (Input.gyro.attitude.y <= -0.1 || Input.GetKey(KeyCode.D))
+        if (Input.gyro.attitude.x <= -0.1 || Input.GetKey(KeyCode.D))
         {
             colors[0].SetActive(true);
             colors[1].SetActive(false);
@@ -32,7 +32,7 @@ public class Gyroscope : NetworkBehaviour
             whichColor = 0;
         }
         //blue
-        else if (Input.gyro.attitude.x <= -0.1 && Input.gyro.attitude.y >= 0.1 || Input.GetKey(KeyCode.A))
+        else if (Input.gyro.attitude.x >= 0.1 || Input.GetKey(KeyCode.A))
         {
             colors[0].SetActive(false);
             colors[1].SetActive(true);
@@ -42,7 +42,7 @@ public class Gyroscope : NetworkBehaviour
             whichColor = 1;
         }
         //yellow
-        else if (Input.gyro.attitude.x >= 0.1 && Input.gyro.attitude.y >= 0.1 || Input.GetKey(KeyCode.A))
+        else if (Input.gyro.attitude.y >= 0.1 || Input.GetKey(KeyCode.S))
         {
             colors[0].SetActive(false);
             colors[1].SetActive(false);
@@ -52,7 +52,7 @@ public class Gyroscope : NetworkBehaviour
             whichColor = 2;
         }
         //green
-        else if (Input.gyro.attitude.x >= 0.1 && Input.gyro.attitude.y <= -0.1 || Input.GetKey(KeyCode.W))
+        else if (Input.gyro.attitude.y <= -0.1 || Input.GetKey(KeyCode.W))
         {
             colors[0].SetActive(false);
             colors[1].SetActive(false);
@@ -72,14 +72,14 @@ public class Gyroscope : NetworkBehaviour
             whichColor = -1;
         }
 
-        else
-        {
-            colors[0].SetActive(false);
-            colors[1].SetActive(false);
-            colors[2].SetActive(false);
-            colors[3].SetActive(false);
-
-            whichColor = -1;
-        }
+        // else
+        // {
+        //     colors[0].SetActive(false);
+        //     colors[1].SetActive(false);
+        //     colors[2].SetActive(false);
+        //     colors[3].SetActive(false);
+        //
+        //     whichColor = -1;
+        // }
     }
 }

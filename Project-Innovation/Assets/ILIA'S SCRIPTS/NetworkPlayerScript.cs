@@ -109,9 +109,8 @@ public class NetworkPlayerScript : NetworkBehaviour
         {
 
             colorCheckScript.SetTheColor(gyroscopeScript.whichColor);
-
             score = colorCheckScript.score;
-            scoreText.text = score.ToString();
+            gyroscopeScript.text.text = "Score: " + score;
 
             TimedFunction();
 

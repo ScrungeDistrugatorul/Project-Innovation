@@ -51,7 +51,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &320610948749193991
 RectTransform:
   m_ObjectHideFlags: 0
@@ -68,8 +68,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.212, y: -4.01}
-  m_SizeDelta: {x: 30, y: 10}
+  m_AnchoredPosition: {x: 0.1984, y: -3.343}
+  m_SizeDelta: {x: 35.4729, y: 36.6808}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &7635051338211513701
 MeshRenderer:
@@ -91,7 +91,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  - {fileID: -1756441650757644441, guid: 6d6070bd27815724cb56f6df5feac759, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -133,16 +133,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: Hello!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6d6070bd27815724cb56f6df5feac759, type: 2}
+  m_sharedMaterial: {fileID: -1756441650757644441, guid: 6d6070bd27815724cb56f6df5feac759,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4278190080
   m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -790,6 +791,7 @@ MonoBehaviour:
   moveSpeed: 6
   lobbyCharacter: {fileID: 6864039757549939199}
   baloon: {fileID: 3223103363723356077}
+  colorSwticher: {fileID: 0}
   spawner: {fileID: 1314781362525483053}
   gyroscopeScript: {fileID: 0}
   trashPrefab:

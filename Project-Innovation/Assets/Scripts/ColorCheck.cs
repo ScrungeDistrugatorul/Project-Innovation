@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ColorCheck : NetworkBehaviour
 {
-    public int score = 0;
+    public int score;
 
     public int colorFromGyro;
 
@@ -28,7 +28,6 @@ public class ColorCheck : NetworkBehaviour
             if (colorFromGyro == 1)
             {
                 score++;
-
             }
 
             Destroy(other.gameObject);
@@ -39,7 +38,6 @@ public class ColorCheck : NetworkBehaviour
             if (colorFromGyro == 2)
             {
                 score++;
-
             }
 
             Destroy(other.gameObject);
@@ -50,14 +48,10 @@ public class ColorCheck : NetworkBehaviour
             if (colorFromGyro == 3)
             {
                 score++;
-
             }
 
             Destroy(other.gameObject);
         }
-
-
-
     }
 
     //[ServerRpc]

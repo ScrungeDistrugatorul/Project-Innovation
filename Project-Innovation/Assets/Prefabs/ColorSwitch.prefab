@@ -80,6 +80,8 @@ MonoBehaviour:
   - {fileID: 2499628548147347351}
   - {fileID: 5466347111029790845}
   - {fileID: 5918967603593442928}
+  text: {fileID: 0}
+  whichColor: 0
 --- !u!222 &5778135438161905250
 CanvasRenderer:
   m_ObjectHideFlags: 0
