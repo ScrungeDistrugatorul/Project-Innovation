@@ -793,10 +793,22 @@ MonoBehaviour:
   spawner: {fileID: 1314781362525483053}
   gyroscopeScript: {fileID: 0}
   trashPrefab:
-  - {fileID: 8904400792196216953, guid: daa9e80754a9253449a2697fc4fa4c34, type: 3}
-  - {fileID: 6774003865481600761, guid: a0f30b32da2494041a7ea39c384be08a, type: 3}
-  - {fileID: 2309898778534751885, guid: 0aa22f89172bd7d4bbcfc933efa3d240, type: 3}
-  - {fileID: 2187453896157894614, guid: 729e6ebab372ca64586254098b03b86f, type: 3}
+  - {fileID: 9157260733177609278, guid: b4c2d9eb720c54a47b73693ef43fb5ca, type: 3}
+  - {fileID: 1675224616123522927, guid: c491b859ba6a5224eb8acc32bf6e10fc, type: 3}
+  - {fileID: 8136415433202748253, guid: fa6e9b8e91d550f4098df6a1d06a8963, type: 3}
+  - {fileID: 3539316505703834333, guid: 2d2c109c87dc03e49860d94225d749a2, type: 3}
+  - {fileID: 6598202291842860387, guid: 1d0b0604d37497742bfc554e3f71e0fe, type: 3}
+  - {fileID: 1894539369152879461, guid: 2120a38a3f15f134c8ee6f00b229d448, type: 3}
+  - {fileID: 6930372174413627723, guid: ed7985957c90772458ba80ad16e7b775, type: 3}
+  - {fileID: 4344773045176322790, guid: c4b530561e3c1d84a8fb793a489b392a, type: 3}
+  - {fileID: 1297159440504894285, guid: 041af22ebac78724ca7fea6943697616, type: 3}
+  - {fileID: 3311768799373669742, guid: e7332d9b2787e2b409e9e3de0de2416c, type: 3}
+  - {fileID: 4277620762646783577, guid: a4303d8b6238d8845a20f15212e36f12, type: 3}
+  - {fileID: 6598270992213066077, guid: 75f864566043c5a469aff300e672186e, type: 3}
+  - {fileID: 7113894946239785021, guid: ebf93af97a5b05444a1ba61ff6aa5b52, type: 3}
+  - {fileID: 6710340103617726687, guid: 94d8365e220e5fb49ba8677c1423d9f4, type: 3}
+  - {fileID: 2463691349473000578, guid: 959bd0042d149a747b2f85b59d339b31, type: 3}
+  - {fileID: 8833380564685262248, guid: 50e8f0727212e394a919435ab3c59469, type: 3}
   scoreText: {fileID: 6894808194099242393}
   score: 0
   spawnRate: 2
@@ -994,6 +1006,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 0
+  colorFromGyro: 0
 --- !u!54 &6474990752839735808
 Rigidbody:
   m_ObjectHideFlags: 0
