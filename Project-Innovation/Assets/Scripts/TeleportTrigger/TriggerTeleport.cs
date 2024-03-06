@@ -1,7 +1,8 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using FMODUnity;
+using FMOD.Studio;
 public class TriggerTeleport : MonoBehaviour
 {
     private GameManager _gameManager;
@@ -10,7 +11,10 @@ public class TriggerTeleport : MonoBehaviour
     private TMP_Text _floatingText;
     public int sceneToSwitch;
     public float originalTime = 5f;
-    
+    private EventInstance countdownLobbyEventInstance;
+    private bool isSoundPlaying = false;
+
+
     private void Awake()
     {
         _floatingText = GetComponentInChildren<TMP_Text>();
@@ -33,6 +37,7 @@ public class TriggerTeleport : MonoBehaviour
         {
             _timeCountdown -= Time.deltaTime;
             UpdateText(1);
+            
             if (_timeCountdown <= 0)
             {
                 SceneSwitch();
@@ -43,9 +48,18 @@ public class TriggerTeleport : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        
         if (other.CompareTag("Player"))
         {
+            if (!isSoundPlaying)
+            {
+                countdownLobbyEventInstance = FMODUnity.RuntimeManager.CreateInstance(FMODEvents.instance.CountdownLobby);
+                countdownLobbyEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(this.transform.position));
+                countdownLobbyEventInstance.start();
+                isSoundPlaying = true;
+            }
             _playerCount++;
+            
             UpdateText(0);
             Debug.Log(_playerCount);
         }
@@ -53,12 +67,21 @@ public class TriggerTeleport : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+      
         if (other.CompareTag("Player"))
         {
             _playerCount--;
             Debug.Log(_playerCount);
+            if (countdownLobbyEventInstance.isValid())
+            {
+                countdownLobbyEventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                countdownLobbyEventInstance.release(); // Release the EventInstance
+            }
             _timeCountdown = originalTime;
             UpdateText(0);
+
+            isSoundPlaying = false;
+
         }
     }
 

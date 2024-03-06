@@ -8,6 +8,9 @@ public class FMODEvents : MonoBehaviour
     [field: Header("Test")]
     [field: SerializeField] public EventReference test { get; private set; }
 
+    [field: Header("CountdownLobby")]
+    [field: SerializeField] public EventReference CountdownLobby { get; private set; }
+
     public static FMODEvents instance { get; private set; }
 
 
