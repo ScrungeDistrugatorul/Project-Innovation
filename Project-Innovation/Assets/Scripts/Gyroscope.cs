@@ -22,7 +22,7 @@ public class Gyroscope : NetworkBehaviour
         text.text = "x: " + Input.gyro.attitude.x + " y; " + Input.gyro.attitude.y;
 
         //red
-        if (Input.gyro.attitude.x >= 0.1 && Input.gyro.attitude.y <= -0.1 || Input.GetKey(KeyCode.W))
+        if (Input.gyro.attitude.y <= -0.1 || Input.GetKey(KeyCode.D))
         {
             colors[0].SetActive(true);
             colors[1].SetActive(false);
@@ -32,7 +32,7 @@ public class Gyroscope : NetworkBehaviour
             whichColor = 0;
         }
         //blue
-        else if (Input.gyro.attitude.x <= -0.1 && Input.gyro.attitude.y >= 0.1 || Input.GetKey(KeyCode.S))
+        else if (Input.gyro.attitude.x <= -0.1 && Input.gyro.attitude.y >= 0.1 || Input.GetKey(KeyCode.A))
         {
             colors[0].SetActive(false);
             colors[1].SetActive(true);
@@ -52,7 +52,7 @@ public class Gyroscope : NetworkBehaviour
             whichColor = 2;
         }
         //green
-        else if (Input.gyro.attitude.x <= -0.1 && Input.gyro.attitude.y <= -0.1 || Input.GetKey(KeyCode.D))
+        else if (Input.gyro.attitude.x >= 0.1 && Input.gyro.attitude.y <= -0.1 || Input.GetKey(KeyCode.W))
         {
             colors[0].SetActive(false);
             colors[1].SetActive(false);
