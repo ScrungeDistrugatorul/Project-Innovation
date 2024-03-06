@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028326, g: 0.22571333, b: 0.30692202, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -904,6 +904,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2499628548147347351, guid: 150a9424674ceb24793b1cb3f5f0b1e1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3886785185545760194, guid: 150a9424674ceb24793b1cb3f5f0b1e1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3915055873200518435, guid: 150a9424674ceb24793b1cb3f5f0b1e1,
         type: 3}
       propertyPath: m_Color.a
@@ -913,6 +923,11 @@ PrefabInstance:
         type: 3}
       propertyPath: GlobalObjectIdHash
       value: 2562640063
+      objectReference: {fileID: 0}
+    - target: {fileID: 5466347111029790845, guid: 150a9424674ceb24793b1cb3f5f0b1e1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5550266067658947282, guid: 150a9424674ceb24793b1cb3f5f0b1e1,
         type: 3}
@@ -929,6 +944,11 @@ PrefabInstance:
       propertyPath: m_PlaneDistance
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5918967603593442928, guid: 150a9424674ceb24793b1cb3f5f0b1e1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8236824841444474307, guid: 150a9424674ceb24793b1cb3f5f0b1e1,
         type: 3}
       propertyPath: m_Name
@@ -937,7 +957,7 @@ PrefabInstance:
     - target: {fileID: 8236824841444474307, guid: 150a9424674ceb24793b1cb3f5f0b1e1,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

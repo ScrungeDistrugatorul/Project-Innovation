@@ -30,7 +30,7 @@ public class Spawner : NetworkBehaviour
         if (Time.time > _nextSpawn)
         {
             _nextSpawn = Time.time + spawnRate;
-            GameObject trash = Instantiate(trashPrefab[Random.Range(0,trashPrefab.Length)], transform.position, Random.rotation);
+            Instantiate(trashPrefab[Random.Range(0,trashPrefab.Length-1)], transform.position, Random.rotation);
         }
 
         if (Time.time > _difficultyScale)
