@@ -163,7 +163,6 @@ public class NetworkPlayerScript : NetworkBehaviour
             if (_animator != null && moveDirection.magnitude > 0.1f)
             {
                 _animator.SetTrigger("walk");
-                PlayFootstepServerRpc();
             }
             else 
             {
