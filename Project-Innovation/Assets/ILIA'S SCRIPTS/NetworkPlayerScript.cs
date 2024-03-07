@@ -1,11 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 using Unity.Collections;
+using Unity.Mathematics;
+using Unity.Netcode.Components;
+using Random = UnityEngine.Random;
 
 public class NetworkPlayerScript : NetworkBehaviour
 {
@@ -25,6 +26,9 @@ public class NetworkPlayerScript : NetworkBehaviour
     [SerializeField] private FixedJoystick fixedJoystick;
     [SerializeField] private float moveSpeed;
     [SerializeField] GameObject lobbyCharacter;
+    private PlayerSounds _playerSounds;
+    private NetworkAnimator _animator;
+    private float rotationSpeed = 90f;
 
     bool lobbyBool = false;
 
@@ -90,6 +94,11 @@ public class NetworkPlayerScript : NetworkBehaviour
 
             //if (!IsOwner) { return; }
             //SetPlayerNameTextServerRpc();
+            _animator = lobbyCharacter.GetComponent<NetworkAnimator>();
+            _playerSounds = lobbyCharacter.GetComponentInChildren<PlayerSounds>();
+            
+            Debug.Log(_animator);
+            Debug.Log(_playerSounds);
         }
             
     }
@@ -118,9 +127,48 @@ public class NetworkPlayerScript : NetworkBehaviour
 
         if (SceneManager.GetActiveScene().name == "ILIA'S SCENE")
         {
-            rb.velocity = new Vector3(fixedJoystick.Horizontal * moveSpeed, rb.velocity.y, fixedJoystick.Vertical * moveSpeed);
-        }
+            // rb.velocity = new Vector3(fixedJoystick.Horizontal * moveSpeed, rb.velocity.y, fixedJoystick.Vertical * moveSpeed);
+            //
+            // float angle = Mathf.Atan2(fixedJoystick.Vertical, fixedJoystick.Horizontal) * Mathf.Rad2Deg;
+            // transform.rotation = quaternion.Euler(0f,angle,0f);
+            //
+            // if(_animator != null && rb.velocity.magnitude > 0.1f)
+            // {
+            //     Debug.Log("Happens");
+            //     _animator.SetTrigger("walk");
+            // }
+            // else
+            // {
+            //     _animator.ResetTrigger("walk");
+            // }
 
+
+            // Calculate movement direction
+            Vector3 moveDirection = new Vector3(fixedJoystick.Horizontal, 0f, fixedJoystick.Vertical);
+            
+            // Normalize the movement direction to avoid faster diagonal movement
+            if (moveDirection.magnitude > 0.1f)
+            {
+                // Calculate target rotation
+                Quaternion targetRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
+                
+                // Smoothly rotate the character towards the movement direction
+                transform.localRotation = Quaternion.RotateTowards(transform.localRotation, targetRotation, rotationSpeed);
+            }
+            
+            // Move the character
+            rb.velocity = new Vector3(moveDirection.x * moveSpeed, rb.velocity.y, moveDirection.z * moveSpeed);
+            
+            // Trigger walk animation if moving
+            if (_animator != null && moveDirection.magnitude > 0.1f)
+            {
+                _animator.SetTrigger("walk");
+            }
+            else 
+            {
+                _animator.ResetTrigger("idle");
+            }
+        }
     }
 
     private void Update()
@@ -231,6 +279,10 @@ public class NetworkPlayerScript : NetworkBehaviour
         }
     }
 
+    public void PlayFootstep()
+    {
+        _playerSounds.PlayFootsteps();
+    }
    
 
     [ServerRpc]

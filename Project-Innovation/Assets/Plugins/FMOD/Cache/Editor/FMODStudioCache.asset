@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8976359119463416044
+--- !u!114 &-7571694065309336021
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -27,7 +27,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 400
---- !u!114 &-4920595865331769118
+--- !u!114 &-6544668946640283076
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -52,7 +52,7 @@ MonoBehaviour:
   Labels:
   - Value A
   Exists: 1
---- !u!114 &-4259318152336133070
+--- !u!114 &-5312821110908777164
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -62,24 +62,44 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/test
+  m_Name: event:/Machine1
   m_EditorClassIdentifier: 
-  Path: event:/test
+  Path: event:/Machine1
   Guid:
-    Data1: 514948636
-    Data2: 1218967622
-    Data3: 137332668
-    Data4: 2044110048
+    Data1: 797450929
+    Data2: 1164532296
+    Data3: 1266839456
+    Data4: -1403049865
   Banks:
-  - {fileID: 500092088986132382}
+  - {fileID: 1494443740629468453}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 1541
---- !u!114 &-3895738769958658074
+  Length: 1093
+--- !u!114 &-1827388221509262742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Playercollision
+  m_EditorClassIdentifier: 
+  Path: Assets/FMOD/Audio/Build/Desktop/test.bank
+  Name: test
+  StudioPath: bank:/test
+  lastModified: 638454141357935779
+  FileSizes:
+  - Name: Desktop
+    Value: 9152
+  Exists: 1
+--- !u!114 &-435764717869671746
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -106,34 +126,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 5045
---- !u!114 &-3139617442477417828
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Footsteps
-  m_EditorClassIdentifier: 
-  Path: event:/Footsteps
-  Guid:
-    Data1: -1551650053
-    Data2: 1129424162
-    Data3: 736842629
-    Data4: 946742969
-  Banks:
-  - {fileID: 1494443740629468453}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters:
-  - {fileID: -4920595865331769118}
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
 --- !u!114 &-273590489489932855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,7 +141,7 @@ MonoBehaviour:
   Path: Assets/FMOD/Audio/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638453438991483103
+  lastModified: 638454141357078381
   FileSizes:
   - Name: Desktop
     Value: 1078
@@ -169,20 +161,20 @@ MonoBehaviour:
   EditorBanks:
   - {fileID: -273590489489932855}
   - {fileID: 1494443740629468453}
-  - {fileID: 500092088986132382}
+  - {fileID: -1827388221509262742}
   EditorEvents:
-  - {fileID: -3895738769958658074}
-  - {fileID: -8976359119463416044}
-  - {fileID: 5570364913777572752}
-  - {fileID: 4663579842842493727}
-  - {fileID: -3139617442477417828}
-  - {fileID: -4259318152336133070}
+  - {fileID: -435764717869671746}
+  - {fileID: -7571694065309336021}
+  - {fileID: -5312821110908777164}
+  - {fileID: 2088542657029447997}
+  - {fileID: 8812606713173350065}
+  - {fileID: 5131863234796589141}
   EditorParameters: []
   MasterBanks:
   - {fileID: 1494443740629468453}
   StringsBanks:
   - {fileID: -273590489489932855}
-  cacheTime: 638453438992547844
+  cacheTime: 638454141357935779
   cacheVersion: 131616
 --- !u!114 &500092088986132382
 MonoBehaviour:
@@ -219,12 +211,12 @@ MonoBehaviour:
   Path: Assets/FMOD/Audio/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638453438991413761
+  lastModified: 638454141357068359
   FileSizes:
   - Name: Desktop
-    Value: 136288
+    Value: 136256
   Exists: 1
---- !u!114 &4663579842842493727
+--- !u!114 &2088542657029447997
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -251,7 +243,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1893
---- !u!114 &5570364913777572752
+--- !u!114 &5131863234796589141
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -261,20 +253,48 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Machine1
+  m_Name: event:/test
   m_EditorClassIdentifier: 
-  Path: event:/Machine1
+  Path: event:/test
   Guid:
-    Data1: 797450929
-    Data2: 1164532296
-    Data3: 1266839456
-    Data4: -1403049865
+    Data1: 514948636
+    Data2: 1218967622
+    Data3: 137332668
+    Data4: 2044110048
   Banks:
-  - {fileID: 1494443740629468453}
+  - {fileID: -1827388221509262742}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 1093
+  Length: 1541
+--- !u!114 &8812606713173350065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Footsteps
+  m_EditorClassIdentifier: 
+  Path: event:/Footsteps
+  Guid:
+    Data1: -1551650053
+    Data2: 1129424162
+    Data3: 736842629
+    Data4: 946742969
+  Banks:
+  - {fileID: 1494443740629468453}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters:
+  - {fileID: -6544668946640283076}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
