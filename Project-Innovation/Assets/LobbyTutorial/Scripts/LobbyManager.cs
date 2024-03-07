@@ -102,7 +102,7 @@ public class LobbyManager : NetworkBehaviour
 
             CreateLobby(
                 "Lobby name",
-                4,
+                5,
                false
             );
 
@@ -282,6 +282,11 @@ public class LobbyManager : NetworkBehaviour
             }
         }
         return false;
+    }
+
+    public string GetPlayerName()
+    {
+        return GetPlayer().Data[KEY_PLAYER_NAME].Value;
     }
 
     private Player GetPlayer()

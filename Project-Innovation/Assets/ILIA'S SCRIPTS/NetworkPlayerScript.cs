@@ -5,9 +5,17 @@ using Unity.Netcode;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using Unity.Collections;
 
 public class NetworkPlayerScript : NetworkBehaviour
 {
+
+
+    NetworkVariable<FixedString128Bytes> _netPlayerName = new NetworkVariable<FixedString128Bytes>();
+
+    [SerializeField] string playerName;
+
+    [SerializeField] TMP_Text playerNameText;
 
     public int numberOfPlayers;
 
@@ -18,11 +26,18 @@ public class NetworkPlayerScript : NetworkBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] GameObject lobbyCharacter;
 
+    bool lobbyBool = false;
+
+    [SerializeField] Transform tutorialScreenObject;
+
+
     [Header("Baloon game related")]
     [SerializeField] GameObject baloon;
     bool ballonGameBool= false;
     GameObject slider;
     public GameObject colorSwticher;
+
+    TutorialScreen balloonTutorialScreenScript;
 
     [Header("Color switch related")] 
     [SerializeField] private GameObject spawner;
@@ -38,6 +53,8 @@ public class NetworkPlayerScript : NetworkBehaviour
 
     public int score = 0;
 
+    private bool temporaryBool = false;
+
     [Header("Difficulty setting for color switch")]
     [Range(0.1f, 10.0f)] public float spawnRate;
     [Range(1.0f, 20.0f)] public float difficultyIncreaseScale;
@@ -48,7 +65,7 @@ public class NetworkPlayerScript : NetworkBehaviour
 
     int previousColor = -1;
     int whichColorToSpawn = -2;
-
+    
     [SerializeField] ColorCheck colorCheckScript;
 
     private void Awake()
@@ -63,8 +80,36 @@ public class NetworkPlayerScript : NetworkBehaviour
             GameObject gameObject = GameObject.Find("Player Input(Clone)");
 
             fixedJoystick = gameObject.transform.Find("Fixed Joystick").GetComponent<FixedJoystick>();
+
+            playerName = LobbyManager.Instance.GetPlayerName();
+
+            _netPlayerName.Value = playerName;
+            //CmdChangeNameServerRpc(playerName);
+
+
+
+            //if (!IsOwner) { return; }
+            //SetPlayerNameTextServerRpc();
         }
             
+    }
+
+
+    //[ServerRpc (RequireOwnership = false)]
+    //public void CmdChangeNameServerRpc(string newName)
+    //{
+    //    pname.Value = newName;
+    //    //playerNameText.text = pname.Value.ToString();
+    //    Debug.LogError(pname.Value.ToString());
+
+    //    Debug.LogError("Fuck you");
+    //}
+
+    [ServerRpc]
+    public void TestServerRpc(string _playerName)
+    {
+        playerNameText.text = _playerName;
+        //Debug.LogError("Client id: " + serverRpcParams.Receive.SenderClientId);
     }
 
     private void FixedUpdate()
@@ -82,13 +127,20 @@ public class NetworkPlayerScript : NetworkBehaviour
     {
         if (!IsOwner) { return; }
 
+        if (SceneManager.GetActiveScene().name == "ILIA'S SCENE" && !lobbyBool)
+        {
+
+            TestServerRpc(playerName);
+            lobbyBool = true;
+        }
+
         if (SceneManager.GetActiveScene().name == "BALOON GAME" && !ballonGameBool)
         {
             rb.velocity = new Vector3(0, 0, 0);
 
             float areaForEachPlayer = 32 / numberOfPlayers;
 
-            transform.position = new Vector3(((NetworkManager.LocalClientId-1) * areaForEachPlayer + areaForEachPlayer/2) - 16, -3, 0);
+            transform.position = new Vector3(((NetworkManager.LocalClientId - 1) * areaForEachPlayer + areaForEachPlayer / 2) - 16, -3, 0);
             rb.velocity = new Vector3(0, 0, 0);
 
             lobbyCharacter.SetActive(false);
@@ -98,21 +150,36 @@ public class NetworkPlayerScript : NetworkBehaviour
             ballonGameBool = true;
 
             slider = GameObject.Find("Slider");
+
+            //tutorialScreenObject = transform.Find("Tutorial screen");
+
+            //balloonTutorialScreenScript = tutorialScreenObject.GetComponent<TutorialScreen>();
         }
 
-        if (SceneManager.GetActiveScene().name == "BALOON GAME" && slider != null)
+        if (SceneManager.GetActiveScene().name == "BALOON GAME" && slider != null && TutorialScreen.Instance.readyToPlay)
         {
-            rb.AddForce(transform.up * slider.GetComponent<Slider>().value * 30);
+
+            rb.AddForce(transform.up * slider.GetComponent<Slider>().value * 40);
         }
 
-        if (SceneManager.GetActiveScene().name == "COLOR SWITCH" && clientCanvas != null)
+        if (SceneManager.GetActiveScene().name == "COLOR SWITCH" && clientCanvas != null && TutorialScreen.Instance.readyToPlay)
         {
+            Debug.LogError("ColorSwitchManager.Instance value" + ColorSwitchManager.Instance.timeIsUp);
 
-            colorCheckScript.SetTheColor(gyroscopeScript.whichColor);
-            score = colorCheckScript.score;
-            gyroscopeScript.text.text = "Score: " + score;
+            if (ColorSwitchManager.Instance.timeIsUp && !temporaryBool)
+            {
+                temporaryBool = true;
 
-            TimedFunction();
+                ColorSwitchManager.Instance.ToRunRpcFromPlayer(score, (int)NetworkManager.LocalClientId, playerName);
+            }
+            else
+            {
+                colorCheckScript.SetTheColor(gyroscopeScript.whichColor);
+                score = colorCheckScript.score;
+                gyroscopeScript.text.text = "Score: " + score;
+
+                TimedFunction();
+            }
 
         }
 

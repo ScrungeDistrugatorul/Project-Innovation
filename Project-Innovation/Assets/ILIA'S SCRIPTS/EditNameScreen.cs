@@ -19,6 +19,7 @@ public class EditNameScreen : MonoBehaviour
         continueButton.onClick.AddListener(() => {
 
             LobbyManager.Instance.Authenticate(inputField.text);
+
             LobbyClientScreen.Instance.Show();
             Hide();
         });
