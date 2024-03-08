@@ -17,6 +17,14 @@ public class NetworkPlayerScript : NetworkBehaviour
     [SerializeField] string playerName;
 
     [SerializeField] TMP_Text playerNameText;
+    [SerializeField] TMP_Text playerNameBalloon;
+    [SerializeField] TMP_Text playerNameSpawner;
+
+    [SerializeField] GameObject playerNameTextObject;
+    [SerializeField] GameObject playerNameBalloonObject;
+    [SerializeField] GameObject playerNameSpawnerObject;
+
+    [SerializeField] RectTransform playerNameRectTransform;
 
     public int numberOfPlayers;
 
@@ -42,6 +50,8 @@ public class NetworkPlayerScript : NetworkBehaviour
     public GameObject colorSwticher;
 
     TutorialScreen balloonTutorialScreenScript;
+
+    bool balloonTemporaryBool = false;
 
     [Header("Color switch related")] 
     [SerializeField] private GameObject spawner;
@@ -118,6 +128,8 @@ public class NetworkPlayerScript : NetworkBehaviour
     public void TestServerRpc(string _playerName)
     {
         playerNameText.text = _playerName;
+        playerNameBalloon.text = _playerName;
+        playerNameSpawner.text = _playerName;
         //Debug.LogError("Client id: " + serverRpcParams.Receive.SenderClientId);
     }
 
@@ -186,28 +198,40 @@ public class NetworkPlayerScript : NetworkBehaviour
         {
             rb.velocity = new Vector3(0, 0, 0);
 
-            float areaForEachPlayer = 32 / numberOfPlayers;
+            float areaForEachPlayer = 100 / numberOfPlayers;
 
-            transform.position = new Vector3(((NetworkManager.LocalClientId - 1) * areaForEachPlayer + areaForEachPlayer / 2) - 16, -3, 0);
+            transform.position = new Vector3(((NetworkManager.LocalClientId - 1) * areaForEachPlayer + areaForEachPlayer / 2) - 50, -3, 0);
+            transform.rotation = Quaternion.identity;
             rb.velocity = new Vector3(0, 0, 0);
 
+            spawner.SetActive(false);
             lobbyCharacter.SetActive(false);
             baloon.SetActive(true);
             ChangeBalloonServerRpc();
+
+            TestServerRpc(playerName);
 
             ballonGameBool = true;
 
             slider = GameObject.Find("Slider");
 
-            //tutorialScreenObject = transform.Find("Tutorial screen");
+            playerNameBalloonObject.SetActive(true);
+            playerNameTextObject.SetActive(false);
+            playerNameSpawnerObject.SetActive(false);
 
-            //balloonTutorialScreenScript = tutorialScreenObject.GetComponent<TutorialScreen>();
         }
 
         if (SceneManager.GetActiveScene().name == "BALOON GAME" && slider != null && TutorialScreen.Instance.readyToPlay)
         {
 
-            rb.AddForce(transform.up * slider.GetComponent<Slider>().value * 40);
+            rb.AddForce(transform.up * slider.GetComponent<Slider>().value * 60);
+
+            if (transform.position.y > 72 && !balloonTemporaryBool)
+            {
+                balloonTemporaryBool = true;
+                BaloonGameManager.Instance.ToRunRpcFromPlayer(playerName);
+            }
+
         }
 
         if (SceneManager.GetActiveScene().name == "COLOR SWITCH" && clientCanvas != null && TutorialScreen.Instance.readyToPlay)
@@ -235,17 +259,27 @@ public class NetworkPlayerScript : NetworkBehaviour
         {
             rb.velocity = new Vector3(0, 0, 0);
             rb.useGravity = false;
+            
 
             float areaForEachPlayer = 32 / numberOfPlayers;
 
             transform.position = new Vector3(((NetworkManager.LocalClientId - 1) * areaForEachPlayer + areaForEachPlayer / 2) - 16, 6.5f, 0);
-            //rb.velocity = new Vector3(0, 0, 0);
+            rb.velocity = new Vector3(0, 0, 0);
+
+            transform.rotation = Quaternion.identity;
 
             lobbyCharacter.SetActive(false);
+            baloon.SetActive(false);
             spawner.SetActive(true);
             ChangeColorSwitchServerRpc();
 
+            TestServerRpc(playerName);
+
             colorSwitchBool = true;
+
+            playerNameBalloonObject.SetActive(false);
+            playerNameTextObject.SetActive(false);
+            playerNameSpawnerObject.SetActive(true);
 
             clientCanvas = GameObject.Find("Client stuff");
             gyroscopeScript = clientCanvas.GetComponent<Gyroscope>();
@@ -294,14 +328,24 @@ public class NetworkPlayerScript : NetworkBehaviour
     [ServerRpc]
     public void ChangeBalloonServerRpc()
     {
+        spawner.SetActive(false);
         lobbyCharacter.SetActive(false);
         baloon.SetActive(true);
+
+        playerNameBalloonObject.SetActive(true);
+        playerNameTextObject.SetActive(false);
+        playerNameSpawnerObject.SetActive(false);
     }
 
     [ServerRpc]
     public void ChangeColorSwitchServerRpc()
     {
         lobbyCharacter.SetActive(false);
+        //baloon.SetActive(false);
         spawner.SetActive(true);
+
+        playerNameBalloonObject.SetActive(false);
+        playerNameTextObject.SetActive(false);
+        playerNameSpawnerObject.SetActive(true);
     }
 }
