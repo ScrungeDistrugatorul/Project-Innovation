@@ -29,7 +29,6 @@ public class ColorCheck : NetworkBehaviour
             {
                 score++;
             }
-
             Destroy(other.gameObject);
         }
 

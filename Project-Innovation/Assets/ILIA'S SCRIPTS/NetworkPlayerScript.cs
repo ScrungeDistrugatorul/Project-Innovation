@@ -26,8 +26,8 @@ public class NetworkPlayerScript : NetworkBehaviour
     [SerializeField] private FixedJoystick fixedJoystick;
     [SerializeField] private float moveSpeed;
     [SerializeField] GameObject lobbyCharacter;
-    private PlayerSounds _playerSounds;
-    private NetworkAnimator _animator;
+    public PlayerSounds _playerSounds;
+    public NetworkAnimator _animator;
     private float rotationSpeed = 90f;
 
     bool lobbyBool = false;
@@ -94,8 +94,8 @@ public class NetworkPlayerScript : NetworkBehaviour
 
             //if (!IsOwner) { return; }
             //SetPlayerNameTextServerRpc();
-            _animator = lobbyCharacter.GetComponent<NetworkAnimator>();
-            _playerSounds = lobbyCharacter.GetComponentInChildren<PlayerSounds>();
+            // _animator = lobbyCharacter.GetComponent<NetworkAnimator>();
+            // _playerSounds = lobbyCharacter.GetComponentInChildren<PlayerSounds>();
             
             Debug.Log(_animator);
             Debug.Log(_playerSounds);
@@ -164,10 +164,10 @@ public class NetworkPlayerScript : NetworkBehaviour
             {
                 _animator.SetTrigger("walk");
             }
-            else 
-            {
-                _animator.ResetTrigger("idle");
-            }
+            // else 
+            // {
+            //     _animator.ResetTrigger("walk");
+            // }
         }
     }
 
@@ -278,9 +278,8 @@ public class NetworkPlayerScript : NetworkBehaviour
             }
         }
     }
-
-    [ServerRpc]
-    public void PlayFootstepServerRpc()
+    
+    private void PlayFootsteps()
     {
         _playerSounds.PlayFootsteps();
     }
