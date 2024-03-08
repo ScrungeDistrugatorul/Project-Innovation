@@ -11,17 +11,31 @@ public class LobbyClientScreen : MonoBehaviour
     [SerializeField] private TMP_InputField inputField;
     [SerializeField] private Button joinButton;
 
+    [SerializeField] GameObject buttonObject;
+    [SerializeField] TMP_Text text;
+
     void Awake()
     {
         Instance = this;
         Hide();
 
-        joinButton.onClick.AddListener(() => { LobbyManager.Instance.JoinLobbyByCode(inputField.text); });
+        joinButton.onClick.AddListener(() => {
+
+            LobbyManager.Instance.JoinLobbyByCode(inputField.text);
+
+            OnButtonClicked();
+        });
     }
 
     private void Hide()
     {
         gameObject.SetActive(false);
+    }
+
+    void OnButtonClicked()
+    {
+        buttonObject.SetActive(false);
+        text.text = "Joined!";
     }
 
     public void Show()

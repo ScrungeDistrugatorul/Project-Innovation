@@ -16,7 +16,7 @@ public class ColorSwitchManager : NetworkBehaviour
     [Header("Timer related")]
     public TMP_Text timerText;
 
-    public float currentTime = 7;
+    public float currentTime = 60;
 
     public bool startCountDown = false;
 
@@ -112,7 +112,7 @@ public class ColorSwitchManager : NetworkBehaviour
 
         for (int i = 0; i < NetworkManager.ConnectedClients.Count; i++)
         {
-            
+            //check later
             if (scores[i] >= highestScore)
             {
                 highestScore = scores[i];
@@ -120,7 +120,7 @@ public class ColorSwitchManager : NetworkBehaviour
             }
         }
 
-        winnerText.text = playersNames[winnerIndex];
+        winnerText.text = "The winner is: " + playersNames[winnerIndex];
 
     }
 
