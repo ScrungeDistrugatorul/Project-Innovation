@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.014191784, g: 0.011096022, b: 0.008121098, a: 1}
+  m_IndirectSpecularColor: {r: 0.0141996415, g: 0.011101284, b: 0.00812819, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -425,6 +425,7 @@ RectTransform:
   - {fileID: 1534635147}
   - {fileID: 227729978}
   - {fileID: 2045750386}
+  - {fileID: 1914896763}
   m_Father: {fileID: 1331747044}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -1801,6 +1802,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audio: {fileID: 1186281312}
   audioCondition: {fileID: 261949072}
+  lobbyLoop: {fileID: 0}
 --- !u!81 &1186281311
 AudioListener:
   m_ObjectHideFlags: 0
@@ -2573,6 +2575,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.0018171
       objectReference: {fileID: 0}
+    - target: {fileID: 575222347252011016, guid: 99a2930d06635f645b2a5eba38b00a93,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9f9ae52be189f6c4a9657a49234f9508, type: 2}
     - target: {fileID: 1032982087125543823, guid: 99a2930d06635f645b2a5eba38b00a93,
         type: 3}
       propertyPath: m_LocalScale.z
